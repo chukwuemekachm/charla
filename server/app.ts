@@ -7,7 +7,6 @@ import helmet from 'helmet';
 
 import { initializeRoutes } from './routes';
 import { initializeOAuth } from './config/oauth';
-import database from './database';
 
 const app = express();
 

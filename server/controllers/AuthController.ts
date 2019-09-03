@@ -32,4 +32,14 @@ export default class AuthController extends Controller {
       },
     });
   }
+
+  async getMyProfile({ user: { id } }: any, res: Response, next: NextFunction) {
+    const profile = await User.findById(id);
+
+    console.log(profile, 'profile ---------------------')
+    return res.json({
+      message: `${profile.first_name}'s profile retrieved successfully`,
+      data: profile,
+    });
+  }
 }

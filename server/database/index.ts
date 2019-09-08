@@ -19,6 +19,6 @@ export const Chat = mongoose.model<IChat>('Chat', chatSchema);
 mongoose.connection.on('error', err => console.log(`Mongodb error \n${err}`));
 mongoose.connection.once('open', () => console.log(connectionMessage));
 
-mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
+mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useFindAndModify: false });
 
 export default mongoose;

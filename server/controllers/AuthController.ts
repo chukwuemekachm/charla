@@ -1,4 +1,4 @@
-import { Response, Request, NextFunction } from 'express-serve-static-core';
+import { Response, NextFunction } from 'express-serve-static-core';
 
 import Controller from './Controller';
 import { User } from '../database';
@@ -8,6 +8,8 @@ import { IUser } from '../database/schemas/user.schema';
 export default class AuthController extends Controller {
   constructor(io: SocketIO.Server) {
     super(io);
+    this.getUserProfile = this.getUserProfile.bind(this);
+    this.updateUserProfile = this.updateUserProfile.bind(this);
   }
 
   async login({ user }: any, res: Response, next: NextFunction) {
@@ -30,6 +32,30 @@ export default class AuthController extends Controller {
         ...user,
         token,
       },
+    });
+  }
+
+  async getUserProfile({ user: { id } }: any, res: Response, next: NextFunction) {
+    const profile = await User.findById(id);
+
+    return res.json({
+      message: `${profile.first_name}'s profile retrieved successfully`,
+      data: this.trimUser(profile),
+    });
+  }
+
+  async updateUserProfile({ user: { id }, body }: any, res: Response, next: NextFunction) {
+    let { first_name, last_name } = body;
+    const profile = await User.findById(id);
+
+    first_name = first_name || profile.first_name;
+    last_name = last_name || profile.last_name;
+
+    await User.findByIdAndUpdate(id, { last_name, first_name });
+
+    return res.json({
+      message: `${first_name}'s profile updated successfully`,
+      data: this.trimUser(<IUser>{ first_name, last_name }),
     });
   }
 }

@@ -11,8 +11,8 @@ export interface IChat extends Document {
 export default new Schema({
   _id: { type: Schema.Types.ObjectId, default: new Types.ObjectId() },
   body: String,
-  sender_id: Schema.Types.ObjectId,
-  receiver_id: Schema.Types.ObjectId,
+  sender_id: { type: Schema.Types.ObjectId, ref: 'User' },
+  receiver_id: { type: Schema.Types.ObjectId, ref: 'User' },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });

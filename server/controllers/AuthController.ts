@@ -4,10 +4,12 @@ import Controller from './Controller';
 import { User } from '../database';
 import { generateToken } from '../helpers/jwt.helper';
 import { IUser } from '../database/schemas/user.schema';
+import { throws } from 'assert';
 
 export default class AuthController extends Controller {
   constructor(io: SocketIO.Server) {
     super(io);
+    this.getUserProfile = this.getUserProfile.bind(this);
   }
 
   async login({ user }: any, res: Response, next: NextFunction) {
@@ -33,13 +35,12 @@ export default class AuthController extends Controller {
     });
   }
 
-  async getMyProfile({ user: { id } }: any, res: Response, next: NextFunction) {
+  async getUserProfile({ user: { id } }: any, res: Response, next: NextFunction) {
     const profile = await User.findById(id);
 
-    console.log(profile, 'profile ---------------------')
     return res.json({
       message: `${profile.first_name}'s profile retrieved successfully`,
-      data: profile,
+      data: this.trimUser(profile),
     });
   }
 }

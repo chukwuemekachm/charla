@@ -16,7 +16,7 @@ export default new Schema({
   last_name: String,
   email: String,
   image_url: String,
-  contacts: [Schema.Types.ObjectId],
+  contacts: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });

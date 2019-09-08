@@ -12,4 +12,5 @@ export function authRoutes(app: Application, io: SocketIO.Server) {
   app.get(`${baseURL}/oauth/google-callback`, passport.authenticate('google'), authController.login);
 
   app.get(`${baseURL}/me`, autheticateUser, authController.getUserProfile);
+  app.put(`${baseURL}/me`, autheticateUser, authController.updateUserProfile);
 }

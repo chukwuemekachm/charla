@@ -37,4 +37,23 @@ export default class ContactController extends Controller {
       message: `User with email ${email} not found.`,
     });
   }
+
+  async deleteContact({ user: { id }, body: { email } }: any, res: Response, next: NextFunction) {
+    const contact = await User.findOne({ email });
+    const user = await User.findById(id);
+
+    if (contact) {
+      if (user.contacts.includes(contact._id)) {
+        await User.findByIdAndUpdate(id, { '$pull': { "contacts": contact._id } });
+
+        return res.json({
+          message: `${contact.first_name} has been successfully deleted from your contacts.`,
+        });
+      }
+    }
+
+    return res.json({
+      message: `User with email ${email} not found.`,
+    });
+  }
 }

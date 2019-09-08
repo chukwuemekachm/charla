@@ -9,6 +9,5 @@ export function contactRoutes(app: Application, io: SocketIO.Server) {
 
   app.get(`${baseURL}/contacts`, autheticateUser, contactController.getUserContacts);
   app.post(`${baseURL}/contacts`, autheticateUser, contactController.addContact);
-  // app.get(`${baseURL}/contacts/:contactId`, autheticateUser, authController.getMyProfile);
-  // app.delete(`${baseURL}/contacts/:contactId`, autheticateUser, authController.getMyProfile);
+  app.delete(`${baseURL}/contacts`, autheticateUser, contactController.deleteContact);
 }

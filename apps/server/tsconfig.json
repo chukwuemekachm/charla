@@ -16,12 +16,12 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "es3",
-    "baseUrl": "./server",
+    "baseUrl": "src",
     "outDir": "./dist"
   },
   "experimentalDecorators": true,
   "include": [
-    "./server/**/*"
+    "./src/**/*"
   ],
   "exclude": [
     "node_modules",

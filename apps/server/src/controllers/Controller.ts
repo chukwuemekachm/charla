@@ -1,5 +1,5 @@
-import { IUser } from "database/schemas/user.schema";
-import { IChat } from "database/schemas/chat.schema";
+import { IUser } from '../database/schemas/user.schema';
+import { IChat } from '../database/schemas/chat.schema';
 
 export default abstract class Controller {
   private io: SocketIO.Server;

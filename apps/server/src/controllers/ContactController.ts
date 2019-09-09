@@ -1,8 +1,8 @@
-import { Response, Request, NextFunction } from 'express-serve-static-core';
+import { Response, NextFunction } from 'express-serve-static-core';
 
 import Controller from './Controller';
 import { User } from '../database';
-import { IUser } from 'database/schemas/user.schema';
+import { IUser } from '../database/schemas/user.schema';
 
 export default class ContactController extends Controller {
   constructor(io: SocketIO.Server) {

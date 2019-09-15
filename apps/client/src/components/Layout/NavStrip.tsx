@@ -26,7 +26,7 @@ function NavStrip() {
         }
         <span><i className="icon ion-md-add" /></span>
       </NavStrip.Avatars>
-      <NavStrip.Title>Fitness App - A Simple  &amp; Clean</NavStrip.Title>
+      <NavStrip.Title>Chat App - A Simple  &amp; Clean</NavStrip.Title>
       <Button>In Progress</Button>
     </NavStrip.Wrapper>
   );

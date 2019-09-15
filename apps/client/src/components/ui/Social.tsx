@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+
 import facebookLogo from '../../assets/logo-facebook.svg';
 import googleLogo from '../../assets/logo-google.svg';
 import twitterLogo from '../../assets/logo-twitter.svg';
@@ -8,13 +9,14 @@ import {
   WHITE_SMOKE,
   LIGHT_STEEL_BLUE,
   CORN_FLOWER_BLUE,
+  BLACK,
 } from 'styles/_colors';
 
 function Social() {
   return (
     <Social.Wrapper>
       <Social.SocialLogins>
-        <Social.LoginButton>
+        <Social.LoginButton href="http://localhost:3000/api/v1/oauth/google">
           <img src={googleLogo} /> Login with Google
         </Social.LoginButton>
         <Social.LoginButton>
@@ -40,7 +42,7 @@ Social.Wrapper = styled.div`
 
 Social.SocialLogins = styled.div``;
 
-Social.LoginButton = styled.div`
+Social.LoginButton = styled.a`
   display: flex;
   align-items: center;
   padding: 5px 30px;
@@ -50,6 +52,8 @@ Social.LoginButton = styled.div`
   background-color: ${WHITE_SMOKE};
   margin-bottom: 15px;
   border-radius: 2px;
+  text-decoration: none;
+  color: ${BLACK};
 
   img {
     width: 40px;

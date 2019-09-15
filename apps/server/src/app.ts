@@ -4,6 +4,7 @@ import express from 'express';
 import Socket from 'socket.io';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
+import cors from 'cors';
 
 import { initializeRoutes } from './routes';
 import { initializeOAuth } from './config/oauth';
@@ -11,6 +12,7 @@ import { initializeOAuth } from './config/oauth';
 const app = express();
 
 // Body parser and helmet middleware
+app.use(cors());
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -3,8 +3,21 @@ import styled from 'styled-components';
 
 import Social from 'components/ui/Social';
 import Banner from 'components/ui/Banner';
+import { authenticateUser } from 'services';
 
-function Authentication() {
+const { useEffect } = React;
+
+async function loginUser(search) {
+  const res = await authenticateUser(search);
+}
+
+function Authentication({ location: { search } }) {
+  useEffect(function () {
+    if (search && typeof search === 'string') {
+      loginUser(search);
+    }
+  });
+
   return (
     <Authentication.Wrapper>
       <Social />

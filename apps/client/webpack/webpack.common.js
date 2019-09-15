@@ -33,6 +33,13 @@ module.exports = {
     rules: [
       { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
       { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      },
     ],
   },
 };

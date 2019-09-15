@@ -1,5 +1,8 @@
 import * as React from 'react';
 import GlobalCSS from 'styles/_global.css';
+import Social from './ui/Social';
+import Banner from './ui/Banner';
+import Authentication from './Pages/Authentication';
 import Layout from './Layout';
 
 export default function App() {
@@ -48,7 +51,10 @@ export default function App() {
         messageCount={5}
         message="This example is when you run into someone. This is..."
       /> */}
-      <Layout />
+      {/* <Social /> */}
+      {/* <Banner /> */}
+      <Authentication />
+      {/* <Layout /> */}
     </React.Fragment>
   );
 }

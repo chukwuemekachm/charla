@@ -15,7 +15,7 @@ export default class ContactController extends Controller {
 
     return res.json({
       message: `${first_name}'s contacts retrieved successfully.`,
-      data: contacts.map(contact => this.trimUser(<IUser><any>contact)),
+      data: contacts.map(contact => this.trimUser(<IUser>(<any>contact))),
     });
   }
 
@@ -25,7 +25,7 @@ export default class ContactController extends Controller {
 
     if (contact) {
       if (!user.contacts.includes(contact._id)) {
-        await User.findByIdAndUpdate(id, { '$push': { "contacts": contact._id } });
+        await User.findByIdAndUpdate(id, { $push: { contacts: contact._id } });
       }
 
       return res.json({
@@ -44,7 +44,7 @@ export default class ContactController extends Controller {
 
     if (contact) {
       if (user.contacts.includes(contact._id)) {
-        await User.findByIdAndUpdate(id, { '$pull': { "contacts": contact._id } });
+        await User.findByIdAndUpdate(id, { $pull: { contacts: contact._id } });
 
         return res.json({
           message: `${contact.first_name} has been successfully deleted from your contacts.`,

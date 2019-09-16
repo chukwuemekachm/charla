@@ -13,9 +13,7 @@ export default abstract class Controller {
   }
 
   trimUser(user: IUser) {
-    const {
-      _id, first_name, last_name, email, image_url, created_at, updated_at,
-    } = user;
+    const { _id, first_name, last_name, email, image_url, created_at, updated_at } = user;
 
     return {
       id: _id,
@@ -29,9 +27,7 @@ export default abstract class Controller {
   }
 
   trimChat(chat: IChat) {
-    const {
-      _id, body, sender_id, receiver_id, created_at, updated_at,
-    } = chat;
+    const { _id, body, sender_id, receiver_id, created_at, updated_at } = chat;
 
     return {
       id: _id,

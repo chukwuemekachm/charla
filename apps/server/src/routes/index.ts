@@ -9,9 +9,11 @@ export function initializeRoutes(app: Application, io: SocketIO.Server) {
   chatRoutes(app, io);
   contactRoutes(app, io);
 
-  app.all('*', (req, res) => res.json({
-    message: 'Route Un-available'
-  }));
+  app.all('*', (req, res) =>
+    res.json({
+      message: 'Route Un-available',
+    }),
+  );
 
   app.use((error, req, resp, next) => {
     return resp.status(500).json({

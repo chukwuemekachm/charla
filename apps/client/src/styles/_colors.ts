@@ -11,3 +11,5 @@ export const LIGHT_GREEN = '#9EE378';
 export const LIGHT_CORAL = '#F65C86';
 
 export const LIGHT_SLATE_GRAY = '#818794';
+
+export const BLACK = '#000';

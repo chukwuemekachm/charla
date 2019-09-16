@@ -5,7 +5,7 @@ import SideNav from './SideNav';
 import NavBar from './NavBar';
 
 interface LayoutProps {
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 function Layout({ children }: LayoutProps) {

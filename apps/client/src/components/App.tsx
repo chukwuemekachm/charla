@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 
-import Authentication from './Pages/Authentication';
-
+import Authentication from './Pages/Authentication/index';
 import GlobalCSS from 'styles/_global.css';
 import { Provider } from 'providers';
-
+import Portal from './Pages/Portal';
 
 export default function App() {
   return (
@@ -14,8 +18,9 @@ export default function App() {
       <Provider>
         <BrowserRouter>
           <Switch>
-            <Route path="/" component={Authentication} exact />
+            <Route path="/" component={Portal} exact />
             <Route path="/google-callback" component={Authentication} />
+            <Redirect to="/" />
           </Switch>
         </BrowserRouter>
       </Provider>

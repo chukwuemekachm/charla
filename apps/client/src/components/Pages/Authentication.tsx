@@ -4,17 +4,27 @@ import styled from 'styled-components';
 import Social from 'components/ui/Social';
 import Banner from 'components/ui/Banner';
 import { authenticateUser } from 'services';
+import { withContext } from 'providers';
 
 const { useEffect } = React;
 
-async function loginUser(search) {
-  const res = await authenticateUser(search);
+let sentRequest = false;
+
+async function loginUser(search, setUser) {
+  const { data } = await authenticateUser(search);
+  setUser(data);
+  sentRequest = true;
 }
 
-function Authentication({ location: { search } }) {
+function Authentication(props) {
+  const {
+    location: { search },
+    context: { auth: { setUser } },
+  } = props;
+
   useEffect(function () {
-    if (search && typeof search === 'string') {
-      loginUser(search);
+    if (search && typeof search === 'string' && !sentRequest) {
+      loginUser(search, setUser);
     }
   });
 
@@ -32,5 +42,4 @@ Authentication.Wrapper = styled.div`
   background-position: center;
 `;
 
-export default Authentication;
-// https://cdn.dribbble.com/users/1545170/screenshots/7147772/media/09638e07d8215857000e43dd102572db.jpg
+export default withContext(Authentication);
